@@ -1,0 +1,47 @@
+{
+  "name": "frontend-skelton",
+  "version": "1.0.0",
+  "description": "frontend-skelton",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm run bower:install",
+    "bower:install": "bower install",
+    "build:js": "browserify -t babelify src/js/main.js > public/bundle.js",
+    "min:js": "uglifyjs public/bundle.js > public/bundle.min.js",
+    "release:js": "npm run build:js && npm run min:js",
+    "watch:js": "watchify -v -t babelify src/js/main.js -o public/bundle.js",
+    "build:css": "stylus src/styl/main.styl --include-css -p | cssnext -s > public/bundle.css",
+    "min:css": "cssnext -c -s public/bundle.css > public/bundle.min.css",
+    "release:css": "npm run build:css && npm run min:css",
+    "watch:css": "watch 'npm run build:css' src/styl/",
+    "watch": "npm run watch:css & npm run watch:js & npm run server",
+    "release": "npm run clear && npm run release:css & npm run release:js",
+    "server": "browser-sync start --server public/ --files 'public/**/*' --reload-delay 200",
+    "clear": "rm -f public/bundle.*",
+    "start": "npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yukku0423/frontend-skelton.git"
+  },
+  "author": "Yoshiyuki Ieyama",
+  "license": "MIT",
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "bower": "^1.5.3",
+    "browser-sync": "^2.9.10",
+    "browserify": "^11.2.0",
+    "cssnext": "^1.8.4",
+    "react-dom": "^0.14.0",
+    "stylus": "^0.52.4",
+    "uglify-js": "^2.4.24",
+    "watch": "^0.16.0",
+    "watchify": "^3.4.0"
+  },
+  "dependencies": {
+    "merge": "^1.2.0",
+    "ncmb": "^2.0.0",
+    "react": "^0.14.0",
+    "superagent": "^1.4.0"
+  }
+}

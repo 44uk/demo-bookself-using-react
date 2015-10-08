@@ -1,0 +1,19 @@
+{
+  "name": "bookshelf",
+  "version": "0.0.0",
+  "authors": [
+    "Yoshiyuki Ieyama <y.ieyama@4digit.jp>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sanitize.css": "~2.0.0"
+  }
+}

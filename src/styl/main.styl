@@ -1,0 +1,301 @@
+@import '../../bower_components/sanitize.css/dist/sanitize.css'
+
+button
+  border none
+
+body
+  display flex
+  flex-direction column
+  height 100vh
+
+.button
+  box-sizing border-box
+  cursor pointer
+  display inline-block
+  border-radius 3px
+  border 1px solid #ccc
+  background-color #fff
+  padding 8px 4px
+  text-decoration none
+  text-align center
+  font-size 0.8rem
+  transition 0.33s
+  &:hover
+    background-color #ddd
+    font-weight bold
+
+  &--go
+    color #fff
+    background-color #73C11D
+    &:hover
+      background-color #8be524
+
+@keyframes book-hover
+  0%
+    box-shadow 0px 0px 3px 1px rgba(228,155,15,.3)
+  50%
+    box-shadow 0px 0px 9px 1px rgba(228,155,15,.7)
+  100%
+    box-shadow 0px 0px 3px 1px rgba(228,155,15,.3)
+
+@keyframes icon-hover
+  0%
+    transform rotateZ(0)
+  25%
+    transform rotateZ(-12deg) scale(1.2)
+  75%
+    transform rotateZ(12deg)
+  100%
+    transform rotateZ(0)
+
+[class^="ic-"]
+  display inline-block
+  width 32px
+  height 32px
+
+.ic-cart
+  background-image url(svg/cart.svg)
+
+.ic-review
+  background-image url(svg/comment.svg)
+
+.ic-close
+  background-image url(svg/close.svg)
+
+.ic-add
+  background-image url(svg/add.svg)
+
+#app
+  background-color #e2e2e2
+  flex-grow 1
+
+.header
+  color #fff
+  font-weight bold
+  padding 10px 0
+  background-color #333
+  &__title
+    text-align center
+
+.footer
+  font-size 0.8rem
+  padding 40px 20px
+  color #fff
+  background-color #333
+  a
+    color #fff
+
+.shelf
+  display flex
+  flex-wrap wrap
+  justify-content center
+  padding 20px 0
+
+.case
+  position relative
+  display block
+  padding 30px 20px 10px
+  background-color #fff
+
+  &__link
+    cursor pointer
+    position absolute
+    display inline-block
+    bottom 4px
+    z-index 2
+    transition .5s
+    opacity 0.33
+    &--cart
+      right 4px
+    &--review
+      right 40px
+    &:hover
+      opacity 1
+      animation icon-hover 1s infinite
+
+  &:before,
+  &:after
+    content ' '
+    display block
+    position absolute
+    background linear-gradient(to bottom, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%)
+    width 100%
+    z-index 1
+    left 0
+    box-shadow 0px 0px 1px 1px rgba(0,0,0,0.1)
+
+  &:before
+    height 2px
+    bottom 40%
+
+  &:after
+    height 16px
+    bottom 0
+
+  &:nth-child(2n) .book
+    transform rotateZ(0deg)
+  &:nth-child(3n) .book
+    transform rotateZ(1deg)
+  &:nth-child(4n) .book
+    transform rotateZ(-1deg)
+
+.book
+  cursor: pointer
+  width 160px
+  box-shadow 0px 0px 1px 2px rgba(0,0,0,0.1)
+
+  &__cover
+    min-height: 220px
+
+  &:hover
+    animation book-hover 1s infinite
+
+  &--add
+    text-align center
+    img
+      width 50%
+
+.form
+  display hidden
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  z-index 3
+  background-color rgba(0.3, 0.3, 0.3, 0.5)
+  &__inner
+    position relative
+    width 80%
+    margin 40px auto
+    background-color #fff
+    padding 10px 20px
+  &__input
+    display flex
+    flex-direction column
+    margin 10px auto
+
+  &[data-is-shown="false"]
+    display: none
+
+  &[data-is-shown="true"]
+    display: block
+
+.comment
+  position relative
+  font-size .85rem
+  border-bottom 1px dashed #ccc
+  margin-bottom 8px
+  &__body
+    display block
+    padding-bottom 16px
+    &__input
+      width 100%
+      box-sizing border-box
+  &__name
+    position absolute
+    bottom 0
+    right 0
+    &__input
+      text-align right
+  &__save
+    position absolute
+    bottom -42px
+    right 0
+    width 120px
+    color #fff
+    background-color #73C11D
+    &:hover
+      background-color #8BE524
+  &--editable
+    .comment__body
+      padding-bottom 36px
+    .comment__name
+      padding-bottom 4px
+
+@keyframes review-appear
+  0%
+    transform scale(.98)
+    opacity .5
+  100%
+    transform scale(1.0)
+    opacity 1.0
+
+.review
+  z-index 9
+  position absolute
+  top 0
+  left 0
+  background-color rgba(0, 0, 0, 0.5)
+  width 100%
+  height 100%
+
+  &[data-is-shown="false"]
+    display: none
+
+  &[data-is-shown="true"]
+    display: block
+
+  &__container
+    position relative
+    animation review-appear .33s
+    display flex
+    align-items flex-start
+    padding 16px 16px 46px
+    width 80%
+    margin 30px auto
+    background-color #fff
+    box-shadow 0px 0px 4px 2px rgba(0,0,0,0.3)
+
+  &__post
+    width 120px
+    margin-top 16px
+    color #fff
+    background-color #73C11D
+    &:hover
+      background-color #8BE524
+
+  &__info
+    width 120px
+    margin-right 16px
+
+  &__comments
+    flex-grow 1
+
+  &__close
+    animation rotate-close 3s infinite
+    position absolute
+    bottom -40px
+    right 0
+    cursor pointer
+
+@keyframes rotate-close
+  0%
+    transform rotate(0)
+  20%
+    transform rotate(8deg)
+  40%
+    transform rotate(8deg)
+  60%
+    transform rotate(0deg)
+  70%
+    transform rotate(180deg)
+  100%
+    transform rotate(0)
+
+.book:hover ~ .case__link--review
+  opacity 1
+  animation icon-hover 1s infinite
+
+@keyframes rotate-add
+  0%
+    transform rotate(0)
+  40%
+    transform rotate(95deg)
+  50%
+    transform rotate(90deg)
+  100%
+    transform rotate(180deg)
+
+.book__add
+  animation rotate-add 10s infinite
